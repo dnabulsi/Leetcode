@@ -16,27 +16,13 @@ class Solution(object):
         # 2. curr node is somewhere in middle => prev and next are not None
         # 3. curr node is last node => next is None
         
-        if head is None:
-            return head
-        
-        vals = [head.val]
-        prev = head
-        curr = head.next
+        curr = head
                 
         while curr:
-            if curr.val not in vals:
-                vals.append(curr.val)
-                prev = curr
-                curr = curr.next
-            else:
-                # if node is in middle
-                if curr.next is not None:
-                    prev.next = curr.next
-                    curr = curr.next
-                # if node is at end
-                else:
-                    prev.next = None
-                    curr = None
+            if curr.next is not None and curr.val == curr.next.val:
+                curr.next = curr.next.next
+                continue
+            curr = curr.next
             
         return head
     
